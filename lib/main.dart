@@ -9,15 +9,34 @@ class DrumSound extends StatelessWidget {
     player.play('sound$soundNumber.wav');
   }
 
-  Expanded placePads({Color color, int snum}) {
+  Expanded placePads({Color color, int snum, String name}) {
     return Expanded(
-      child: FlatButton(
-        splashColor: Colors.indigoAccent,
-        color: color,
-        onPressed: () {
-          playSound(snum);
-        },
-        // child: Text('$snum'),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: RaisedButton(
+          elevation: 4,
+          highlightElevation: 3,
+          //splashColor: Colors.indigoAccent,
+          //hoverColor: Colors.red,
+          highlightColor: color,
+          color: Colors.black45,
+          onPressed: () {
+            playSound(snum);
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Center(
+            child: Text(
+              '$name',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -25,8 +44,10 @@ class DrumSound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.brown,
+        //backgroundColor: Colors.white,
         body: SafeArea(
           child: Row(
             children: <Widget>[
@@ -34,25 +55,46 @@ class DrumSound extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    placePads(color: Colors.brown, snum: 9),
-                    placePads(color: Colors.black87, snum: 2),
-                    placePads(color: Colors.cyan[200], snum: 3),
-                    placePads(color: Colors.cyan[100], snum: 4),
-                    placePads(color: Colors.black87, snum: 5),
-                    placePads(color: Colors.brown, snum: 12),
+                    placePads(
+                        color: Colors.pinkAccent, snum: 6, name: 'Bass Drum'),
+                    SizedBox(height: 5),
+                    placePads(color: Colors.green, snum: 9, name: 'High Tom'),
+                    SizedBox(height: 5),
+                    // placePads(color: Colors.tealAccent, snum: 2),
+                    SizedBox(height: 5),
+                    placePads(
+                        color: Colors.purpleAccent,
+                        snum: 3,
+                        name: 'Crash Cymbal'),
+                    SizedBox(height: 5),
+                    placePads(color: Colors.cyan, snum: 4, name: 'Ride Cymbal'),
+                    SizedBox(height: 5),
+                    //placePads(color: Colors.yellowAccent, snum: 5,),
+                    //SizedBox(height: 5),
+                    //placePads(color: Colors.deepOrangeAccent, snum: 12),
+                    SizedBox(height: 5),
                   ],
                 ),
               ),
+              SizedBox(width: 5),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    placePads(color: Colors.brown[900], snum: 7),
-                    placePads(color: Colors.brown, snum: 8),
-                    placePads(color: Colors.brown, snum: 1),
-                    placePads(color: Colors.brown, snum: 10),
-                    placePads(color: Colors.brown, snum: 11),
-                    placePads(color: Colors.brown[900], snum: 6),
+                    placePads(color: Colors.lime, snum: 7, name: 'Mid Tom'),
+                    SizedBox(height: 5),
+                    placePads(
+                        color: Colors.lightGreenAccent,
+                        snum: 8,
+                        name: 'Snare Drum'),
+                    SizedBox(height: 5),
+                    placePads(color: Colors.red, snum: 1, name: 'Floor Tom'),
+                    SizedBox(height: 5),
+                    // placePads(color: Colors.purple, snum: 10),
+                    // SizedBox(height: 5),
+                    placePads(
+                        color: Colors.tealAccent, snum: 11, name: 'Hi-Hat'),
+                    SizedBox(height: 5),
                   ],
                 ),
               )
